@@ -1,0 +1,11 @@
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+setwd("C:/Users/vigne/OneDrive/Documents")
+Iter=read.csv("Iterations.csv")
+View(Iter)
+Iter <- Iter %>% rename("Values"="X7.000000000000000000e.00")
+names(Iter)
+Iter$Iteration = 1:279923
+ggplot(Iter, aes(x = Iteration, y = Values))+geom_line(alpha=0.8)+ggtitle("Stage reached (On a Log Scale) vs. Iterations")+scale_x_log10()
+ggplot(Iter, aes(Values))+geom_bar()+scale_y_log10()+ggtitle("Distribution of iterations reached as a log scale")+scale_x_continuous(breaks = seq(1,7,1))
